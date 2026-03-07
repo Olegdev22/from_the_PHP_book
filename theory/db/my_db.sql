@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Фев 20 2026 г., 12:43
+-- Время создания: Мар 07 2026 г., 23:23
 -- Версия сервера: 8.0.40
 -- Версия PHP: 8.3.14
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- База данных: `my_db`
 --
-CREATE DATABASE IF NOT EXISTS `my_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `my_db`;
 
 -- --------------------------------------------------------
 
@@ -42,7 +40,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`) VALUES
 (1, 'Юлий Цезар', 'caesar@gmail.com'),
 (2, 'Наполеон Бонапарт', 'napoleon@gmail.com'),
-(3, 'Александр Македонский', 'makedonskiy@gmail.com');
+(3, 'Александр Македонский', 'makedonskiy@gmail.com'),
+(4, 'John Doe', 'doe@gmail.com'),
+(6, 'John Doe 2', 'doe@gmail2.com'),
+(9, 'O\'Railly', 'orailly@gmail.com');
 
 --
 -- Индексы сохранённых таблиц
@@ -63,7 +64,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
