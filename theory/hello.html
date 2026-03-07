@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="http://localhost:8088/theory/index.php" method="get">
+      <label >
+        <input type="text" name="username" >
+      </label>
+      
+      <label>
+        <input type="password" size="8" maxlen="16">
+      </label>
+      
+      <input type="checkbox" value="yes" name="substr" checked> Да, я хочу получать рассылку
+      <input type="checkbox" value="yes" name="email" checked> Да, я хочу получать сообщения
+      
+      <input type="submit" value="OK" name="send">
+      <input type="submit" value="delete" name="Delete">
+    </form>
+  </body>
+</html>

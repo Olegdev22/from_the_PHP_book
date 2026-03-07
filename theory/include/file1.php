@@ -1,0 +1,4 @@
+<?php
+
+$name = 'John Doe';
+$age = 20;
