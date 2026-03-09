@@ -7,6 +7,7 @@ if (!$db) {
    exit('Error connecting to MySQL server.');
 }
 
+echo "<h3>SELECT</h3>";
 mysqli_set_charset($db, 'utf8mb4');
 
 $stmt = mysqli_prepare($db, "SELECT * FROM users ");
@@ -23,6 +24,18 @@ if (mysqli_stmt_execute($stmt)) {
       echo "<p>ID: {$row['id']} | Nmae: {$row['name']} | Email: {$row['email']}</p><hr>";
    }
 }
+
+echo "<h3>UPDATE</h3>";
+// Update: UPDATE  tbl SET field1 = 'value1', field2 = 'value2'... WHERE id =2
+$stmt = mysqli_prepare($db, "UPDATE users SET name=? WHERE id = ? ");
+var_dump(mysqli_stmt_execute($stmt, ['John Doe (new)', 6]));
+var_dump(mysqli_affected_rows($db)); // проверка сколько сторок задето
+
+echo "<h3>DELETE</h3>";
+// Delete: DELETE  FROM tbl WHERE id =2
+$stmt = mysqli_prepare($db, "DELETE FROM users WHERE id = ?");
+var_dump(mysqli_stmt_execute($stmt, [6]));
+var_dump(mysqli_affected_rows($db));
 
 function dump($data): void
 {
