@@ -19,3 +19,15 @@ function load(array $fillable, $post = true): array
     }
     return $data;
 }
+
+// ф-я для взятия данных из полей уже заполненных
+function h(string $s): string
+{
+    return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); // игнорирует теги и кавычки
+}
+
+function old(string $name, $post = true): string
+{
+    $load_data = $post ? $_POST : $_GET;
+    return h($load_data[$name]) ?? '';
+}
