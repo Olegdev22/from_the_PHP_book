@@ -29,5 +29,5 @@ function h(string $s): string
 function old(string $name, $post = true): string
 {
     $load_data = $post ? $_POST : $_GET;
-    return h($load_data[$name]) ?? '';
+    return isset($load_data[$name])? h($load_data[$name]) : '';
 }
