@@ -92,3 +92,19 @@ function login(array $data): bool
     $_SESSION['success'] = 'Yuo successfully logged in';
     return true;
 }
+
+function check_auth(): bool
+{
+    if (isset($_SESSION['user'])) {
+        return true;
+    }
+    return false;
+}
+
+function check_admin(): bool
+{
+    if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 2) {
+        return true;
+    }
+    return false;
+}
