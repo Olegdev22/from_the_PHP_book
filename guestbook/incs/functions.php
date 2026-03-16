@@ -5,6 +5,24 @@ function dump(array|object $data): void
     echo "<pre>" . print_r($data, true) . "</pre>";
 }
 
+function redirect(string $url = ''): never
+{
+    header("location: {$url}");
+    die();
+}
+
+function get_errors(array $errors): string
+{
+    $html = '<ul class="list-unstyled">';
+    foreach ($errors as $error_group) {
+        foreach ($error_group as $error) {
+            $html .= "<li>{$error}</li>";
+        }
+    }
+    $html .= '</ul>';
+    return $html;
+}
+
 // загружаем из массива формы ожидаемые поля
 function load(array $fillable, $post = true): array
 {
@@ -29,5 +47,23 @@ function h(string $s): string
 function old(string $name, $post = true): string
 {
     $load_data = $post ? $_POST : $_GET;
-    return isset($load_data[$name])? h($load_data[$name]) : '';
+    return isset($load_data[$name]) ? h($load_data[$name]) : '';
+}
+
+// ф-я для проверки наличия зарегистрированного email
+function register(array $data): bool
+{
+    global $db;
+    $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+    $stmt->execute([$data['email']]);
+    if ($stmt->fetchColumn()) {
+        $_SESSION['errors'] = 'Email already exists';
+        return false;
+    }
+
+    $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+    $stmt = $db->prepare("INSERT INTO users (name,email, password) VALUES (:name,:email, :password)");
+    $stmt->execute($data);
+    $_SESSION['success'] = 'Yuo successfully registered';
+    return true;
 }
