@@ -67,3 +67,28 @@ function register(array $data): bool
     $_SESSION['success'] = 'Yuo successfully registered';
     return true;
 }
+
+// ф-я авторизации Login
+function login(array $data): bool
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->execute([$data['email']]);
+    if ($row = $stmt->fetch()) {
+        if (!password_verify($data['password'], $row['password'])) {
+            $_SESSION['errors'] = 'Wrong email or password';
+            return false;
+        }
+    } else {
+        $_SESSION['errors'] = 'Wrong email or password';
+        return false;
+    }
+
+    foreach ($row as $key => $value) {
+        if ($key != 'password') {
+            $_SESSION['user'][$key] = $value;
+        }
+    }
+    $_SESSION['success'] = 'Yuo successfully logged in';
+    return true;
+}
