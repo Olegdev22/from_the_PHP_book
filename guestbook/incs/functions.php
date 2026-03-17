@@ -108,3 +108,18 @@ function check_admin(): bool
     }
     return false;
 }
+
+// сохранение сообщений
+function save_message(array $data): bool
+{
+    global $db;
+    if (!check_auth()) {
+        $_SESSION['errors'] = 'login required';
+        return false;
+    }
+
+    $stmt = $db->prepare("INSERT INTO messages (user_id, message ) VALUES (?, ?)");
+    $stmt->execute([$_SESSION['user']['id'], $data['message']]);
+    $_SESSION['success'] = 'Message added successfully';
+    return true;
+}

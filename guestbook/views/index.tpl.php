@@ -25,17 +25,21 @@
         <?php endif; ?>
       </div>
       
-      <form class="mb-3" action="">
-        <div class="form-floating">
+      <?php if (check_auth()): ?>
+        <form class="mb-3" method="post">
+          <div class="form-floating">
         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
-                  style="height: 100px"></textarea>
-          <label for="floatingTextarea">Comments</label>
+                  style="height: 100px" name="message"></textarea>
+            <label for="floatingTextarea">Comments</label>
+          </div>
+          <button class="btn btn-primary mt-3" type="submit" name="send-message">Send</button>
+        </form>
+        
+        <div class="col-12">
+          <hr>
         </div>
-        <button class="btn btn-primary mt-3" type="submit">Send</button>
-      </form>
-      <div class="col-12">
-        <hr>
-      </div>
+      <?php endif; ?>
+    
     </div>
     
     <div class="row">
