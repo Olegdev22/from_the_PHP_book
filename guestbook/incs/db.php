@@ -3,6 +3,7 @@
 $db_config = [
     'host' => 'localhost',
     'user' => 'root',
+//    'user' => 'oleg',
     'password' => 'root',
     'db_name' => 'guestbook',
 ];
