@@ -27,4 +27,7 @@ if (isset($_POST['send-message'])) {
     }
 }
 
+$messages = get_message();
+//dump($messages);
+
 require_once __DIR__ . "/views/index.tpl.php";

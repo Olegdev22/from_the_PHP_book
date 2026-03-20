@@ -123,3 +123,16 @@ function save_message(array $data): bool
     $_SESSION['success'] = 'Message added successfully';
     return true;
 }
+
+// Вывод сообщений
+function get_message(): array
+{
+    global $db;
+    $where = '';
+    if (!check_admin()) {
+        $where .= "WHERE status = 1";
+    }
+    $stmt = $db->prepare("SELECT * FROM messages {$where}");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
