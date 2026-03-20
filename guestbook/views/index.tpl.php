@@ -52,7 +52,7 @@
               <div class="card-body">
                 
                 <div class="d-flex justify-content-between">
-                  <h5 class="card-title"><?= $message['user_id'] ?></h5>
+                  <h5 class="card-title"><?= $message['name'] ?></h5>
                   <p class="message-created"><?= $message['created_at'] ?></p>
                 </div>
                 
